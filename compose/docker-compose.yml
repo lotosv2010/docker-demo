@@ -1,0 +1,32 @@
+version: "3"
+services:
+  nginx1:
+    image: nginx:latest
+    networks:
+      - "myweb"
+      - "default"
+    ports:
+      - "8090:80"
+    volumes:
+      - "data:/data"
+      - "./nginx1:/usr/share/nginx/html"
+  nginx2:
+    image: nginx:latest
+    ports:
+      - "8091:80"
+    volumes:
+      - "data:/data"
+      - "./nginx2:/usr/share/nginx/html"
+  nginx3:
+    image: nginx:latest
+    ports:
+      - "8092:80"
+    volumes:
+      - "data:/data"
+      - "./nginx3:/usr/share/nginx/html"
+volumes:
+  data:
+    driver: local
+networks:
+  myweb:
+    driver: bridge
